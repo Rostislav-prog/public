@@ -1,23 +1,12 @@
 <?php
 
-$userName = readline("Как зовут вас пользователь?\n ");
-$deadlineTemplate = "Сколько времени это займет?\n ";
-
-$userTask1 = readline("Какая задача стоит перед вами сегодня?\n ");
-$deadline1 = readline($deadlineTemplate);
-
-$userTask2 = readline("Что будешь делать дальше?\n ");
-$deadline2 = readline($deadlineTemplate);
-
-$userTask3 = readline("А ещё?\n ");
-$deadline3 = readline($deadlineTemplate);
-
-$toDoList = "
-- $userTask1, это займет $deadline1 ч\n
-- $userTask2, это займет $deadline2 ч\n
-- $userTask3, это займет $deadline3 ч\n";
-
-$leadTime = ($deadline1 + $deadline2 + $deadline3);
-
-echo "$userName, сегодня у вас запланировано 3 приоритетных задачи на день: \n $toDoList \n";
-echo "Примерное время выполнения плана = {$leadTime}ч \n";
+while (true){
+    $userAnswer = (int)readline("Крещение Руси произошло в 990, в 988 или в 740 году?   В ");
+    if ($userAnswer == 740 || $userAnswer == 990) {
+        echo "Ответ не верный, крещение Руси произошло в 988 году.\n";
+        break;
+    } else if ($userAnswer == 988){
+        echo "Поздравляем! Это верный ответ!\n";
+        break;
+    }
+}
