@@ -13,9 +13,9 @@ $userTask3 = readline("А ещё?\n ");
 $deadline3 = readline($deadlineTemplate);
 
 $toDoList = "
-- $userTask1, это займет $deadline1 минут\n
-- $userTask2, это займет $deadline2 минут\n
-- $userTask3, это займет $deadline3 минут\n";
+- $userTask1, это займет $deadline1 ч\n
+- $userTask2, это займет $deadline2 ч\n
+- $userTask3, это займет $deadline3 ч\n";
 
 $leadTime = ($deadline1 + $deadline2 + $deadline3);
 
