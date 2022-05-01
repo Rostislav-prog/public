@@ -1,12 +1,38 @@
 <?php
 
+$userName = readline("Как зовут вас пользователь?\n ");
+$toDoList = "";
+$leadTime = 0;
+$criticalTasks = 1000;
+
 while (true){
-    $userAnswer = (int)readline("Крещение Руси произошло в 990, в 988 или в 740 году?   В ");
-    if ($userAnswer == 740 || $userAnswer == 990) {
-        echo "Ответ не верный, крещение Руси произошло в 988 году.\n";
+    $howManyTasks = (int)readline("$userName, сколько задач вы запланировали на день? Ваш ответ:  ");
+
+    toReturn:
+    if ($howManyTasks && $howManyTasks < $criticalTasks) {
+        for($i = 1; $i <= $howManyTasks; $i++) {
+
+            $userTask = (string)readline("Опишите задачу № $i?\n ");
+
+            while (true) {
+                $deadline = (int)readline("Сколько часов это займет?\n ");
+                if ($deadline) {
+                    break;
+                }
+            }
+            
+            $toDoList .= " - $userTask, это займет $deadline ч.\n";
+            $leadTime += $deadline;
+        }
+
+        echo "$userName, сегодня вами запланировано задач $howManyTasks:\n";
+        echo $toDoList;
+        echo "Общее время выполнения плана $leadTime ч.\n";
         break;
-    } else if ($userAnswer == 988){
-        echo "Поздравляем! Это верный ответ!\n";
-        break;
+
+    } else if ($howManyTasks >= $criticalTasks){
+        $howManyTasks = (int)readline("$howManyTasks задач слишком много,
+ программа может зависнуть, укажите число не более $criticalTasks :  ");
+        goto toReturn;
     }
 }
