@@ -1,38 +1,65 @@
 <?php
 
-$userName = readline("Как зовут вас пользователь?\n ");
-$toDoList = "";
-$leadTime = 0;
-$criticalTasks = 1000;
+// 3. * Представьте, что вы ведёте счёт на пальцах одной ладони, не считая два раза подряд один и тот же,
+// начиная с большого. Дойдя до мизинца, вы продолжаете счёт в обратном направлении.
+// Напишите скрипт для запуска из командной строки, определяющий по введённому положительному числу палец,
+// который соответствует ему по счёту. В случаях, если введено некорректное значение (меньше или равное нуля)
+// повторяйте запрос ввода, пока не будет введено корректное число.
 
-while (true){
-    $howManyTasks = (int)readline("$userName, сколько задач вы запланировали на день? Ваш ответ:  ");
+$maxInt = 1000;
 
-    toReturn:
-    if ($howManyTasks && $howManyTasks < $criticalTasks) {
-        for($i = 1; $i <= $howManyTasks; $i++) {
+while (true) {
+    $userChoice = (int)readline("Введите положительное число, менее $maxInt, 
+программа определит соответствующий ему палец: \n ");
+    if ($userChoice && $userChoice > 0) {
 
-            $userTask = (string)readline("Опишите задачу № $i?\n ");
-
-            while (true) {
-                $deadline = (int)readline("Сколько часов это займет?\n ");
-                if ($deadline) {
-                    break;
-                }
+        for ($i = 1; $i <= $maxInt; $i += 8){
+            if ($userChoice == $i){
+                echo "Число $userChoice соответствует по счёту Большому пальцу.\n";
+                break 2;
             }
-            
-            $toDoList .= " - $userTask, это займет $deadline ч.\n";
-            $leadTime += $deadline;
         }
 
-        echo "$userName, сегодня вами запланировано задач $howManyTasks:\n";
-        echo $toDoList;
-        echo "Общее время выполнения плана $leadTime ч.\n";
-        break;
+        for ($i = 2; $i <= $maxInt; $i += 8){
+            if ($userChoice == $i){
+                echo "Число $userChoice соответствует по счёту Указательному пальцу.\n";
+                break 2;
+            }
+        }
 
-    } else if ($howManyTasks >= $criticalTasks){
-        $howManyTasks = (int)readline("$howManyTasks задач слишком много,
- программа может зависнуть, укажите число не более $criticalTasks :  ");
-        goto toReturn;
+        for ($i = 8; $i <= $maxInt; $i += 8){
+            if ($userChoice == $i){
+                echo "Число $userChoice соответствует по счёту Указательному пальцу.\n";
+                break 2;
+            }
+        }
+
+        for ($i = 3; $i <= $maxInt; $i += 4){
+            if ($userChoice == $i){
+                echo "Число $userChoice соответствует по счёту Среднему пальцу.\n";
+                break 2;
+            }
+        }
+
+        for ($i = 4; $i <= $maxInt; $i += 2){
+            if ($userChoice == $i){
+                echo "Число $userChoice соответствует по счёту Безымянному пальцу.\n";
+                break 2;
+            }
+        }
+
+        for ($i = 6; $i <= $maxInt; $i += 6){
+            if ($userChoice == $i){
+                echo "Число $userChoice соответствует по счёту Безымянному пальцу.\n";
+                break 2;
+            }
+        }
+
+        for ($i = 5; $i <= $maxInt; $i += 8){
+            if ($userChoice == $i){
+                echo "Число $userChoice соответствует по счёту Мизинцу.\n";
+                break 2;
+            }
+        }
     }
 }
