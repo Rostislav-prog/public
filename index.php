@@ -41,10 +41,8 @@ for ($i = 0; $i < 3; $i++){
     $combination[$i] = $epithets[$randomEpithets] . " " . $wishes[$randomWishes];
 }
 
-// $and = count($combination) - 1;
-// $new = $combination[$and];
-// $combination[$and] = "и";
-// $combination[] = $new;
+$lastEl = "и " . array_pop($combination);
+$combination[] = $lastEl;
 
 $stringCombination = implode(", ", $combination);
 
