@@ -98,10 +98,6 @@ echo "Наибольшая успеваемость у группы $maxAverage.
 
 $badStudents = [];
 
-// foreach ($students as $group => $list){
-//         $badStudents[] = array_search(2, $list);
-// }
-
 foreach ($students as $group => $list){
     foreach ($list as $student => $grade){
         if ($grade < 3){
@@ -110,9 +106,7 @@ foreach ($students as $group => $list){
     }
 }
 
-print_r($badStudents);
+print_r($badStudents); // что то не пойму как их сгруппировать, посмотрю разбор д.з.
 
-foreach ($badStudents as $key => $list){
-    echo $key;
-}
+
 
