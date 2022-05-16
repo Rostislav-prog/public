@@ -128,3 +128,15 @@ sort($facArray);
 
 print_r($facArray);
 
+// 5. * Сгенерируйте массив из 100 элементов, значения которого могут быть от 1 до 200 так,
+// чтобы значения были уникальные. [1, 5, 6, .... 200] ( in_array )
+
+
+$arrayRand = [];
+for ($i = 1; $i <= 100; $i++){
+    $randEl = array_rand(range(1, 200));
+    if (!in_array($randEl, $arrayRand)){
+        $arrayRand[$i] = $randEl;
+    } else ++$i;
+}
+print_r($arrayRand);
