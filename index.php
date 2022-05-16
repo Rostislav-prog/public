@@ -133,10 +133,15 @@ print_r($facArray);
 
 
 $arrayRand = [];
+
 for ($i = 1; $i <= 100; $i++){
+
     $randEl = array_rand(range(1, 200));
-    if (!in_array($randEl, $arrayRand)){
+
+    if (!in_array($randEl, $arrayRand) && $randEl != 0){
         $arrayRand[$i] = $randEl;
-    } else ++$i;
+    } else {
+        $i--;
+    }
 }
 print_r($arrayRand);
