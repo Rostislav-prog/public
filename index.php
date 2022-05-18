@@ -89,7 +89,7 @@ $students = [
 $average = [];
 
 foreach ($students as $group => $list){
-        $average[$group] = array_sum($students[$group]) / count($students[$group]);
+        $average[$group] = array_sum($list) / count($list);
 }
 
 $maxAverage = (array_search(max($average), $average));
@@ -101,12 +101,12 @@ $badStudents = [];
 foreach ($students as $group => $list){
     foreach ($list as $student => $grade){
         if ($grade < 3){
-            $badStudents[] = [$group => $student];
+            $badStudents[$group][] = $student;
         }
     }
 }
 
-print_r($badStudents); // что то не пойму как их сгруппировать, жду разбор д.з.
+print_r($badStudents);
 
 // 4. * Дан массив из 10 элементов, например ["str", 2, 3, 4, 5, 0, 0, 0, 0, 0]
 // в котором заполнены первые 5, остальные элементу нули.
@@ -128,20 +128,25 @@ sort($facArray);
 
 print_r($facArray);
 
+// for ($i = 4; $i >= 0; $i--){
+//     $facArray[$i * 2 + 1] = $facArray[$i * 2] = $facArray[$i];
+// }
+
+// print_r($facArray);
+
 // 5. * Сгенерируйте массив из 100 элементов, значения которого могут быть от 1 до 200 так,
 // чтобы значения были уникальные. [1, 5, 6, .... 200] ( in_array )
 
 
 $arrayRand = [];
 
-for ($i = 1; $i <= 100; $i++){
+while (count($arrayRand) <= 100) {
 
-    $randEl = array_rand(range(1, 200));
+    $rand = array_rand(range(1, 200));
 
-    if (!in_array($randEl, $arrayRand) && $randEl != 0){
-        $arrayRand[$i] = $randEl;
-    } else {
-        $i--;
+    if (!in_array($rand, $arrayRand)) {
+        $arrayRand[] = $rand;
     }
 }
+
 print_r($arrayRand);
