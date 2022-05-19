@@ -1,115 +1,36 @@
 <?php
 
-function helloWorld() // бьявление функции
+// Подготовьте массив целых чисел (4, 5, 1, 4, 7, 8, 15, 6, 71, 45, 2).
+// Разработайте анонимную функцию для применения в качестве аргумента array_map,
+// возвращающую для каждого элемента массива строковое значение: «четное» или «нечетное».
+// Для проверки четности числа используйте деление по модулю (%);
+
+$arr = [4, 5, 1, 4, 7, 8, 15, 6, 71, 45, 2];
+
+$noNameFun = function ($arg) 
 {
-  echo "Hello, world\n";
-}
-
-helloWorld(); // вызов функции
-
-function greet($name = "Пользователь") { // $name - аргумент функции, "Пользователь" - значение по умолчанию
-  echo "Приветствую, $name\n";
-  return "Приветствую, $name\n"; // возврат значения
-}
-
-greet('Иван'); // Приветствую, Иван
-echo greet('Иван'); // Приветствую, Иван
-
-function Arr(...$arr) // собирает массив аргументов
-{
-  return $arr;
-}
-
-print_r(Arr("h", "j", 3, 7)); // ["h", "j", 3, 7];
-
-function AndAnd(&$i) // обращение к аргументу, меняя его.
-{
-    $i++;
-    // return $i;
-}
-
-$count = 5;
-AndAnd($count);
-echo $count; // 6
-
-function readNumber($message): ?int // типизация под числовые значения ? - функция может вообще ничего не вернуть
-{
-   while (!$number = (int)readline($message)) {
-       echo "Пожалуйста, введите корректное числовое значение\n";
-   }
-
-   return $number;
-}
-
-// Применяемые типы :
-// int
-// float
-// string
-// bool
-// array
-
-function gree($name = null, $repeat = 1): void // функция без return - типизация
-{
- for ($i = 0; $i < $repeat; $i++) {
-    if ($name == null) {
-       echo "Приветствую\n";
-    } else {
-       echo "Приветствую, $name\n";
-    }
- }
-}
-
-function readNumb(string $message): int // типизация аргумента функции
-{
-  while (!$number = (int)readline($message)) {
-      echo "Пожалуйста, введите корректное числовое значение\n";
-  }
-
-  return $number;
-}
-
-$greet = function (string $name): void { // анонимная функция с типизацией
-   echo "Приветствую, $name\n";
+    return (bool)($arg & 1)? "четное" : "нечетное";
 };
 
-$divideFunction = function (int $number) {
-  return $number / 2;
-};
+$trueFolsArr = array_map($noNameFun, $arr);
 
-$numbers = [2, 3, 5, 6, 8, 10];
-$result = array_map($divideFunction, $numbers); // $divideFunction - замыкиние функции array_map
+print_r($trueFolsArr);
 
-function readNonEmptyLine(string $message, Closure $onError): string // для анонимной функции типизация - Closure
+// Разработайте функцию с объявленными типами аргументов и возвращаемого значения,
+// принимающую в качестве аргумента массив целых чисел. Результатом работы функции должен быть массив,
+// содержащий три элемента: max — наибольшее число, min — наименьшее число,
+// avg — среднее арифметическое всех чисел массива
+
+function arrFun(array $arr) : array
 {
- while (!$line = readline($message)) {
-    $onError(); // Вызываем наше замыкание
- }                           
-
- return $line;
+    sort($arr);
+    return [
+        'max' => end($arr),
+        'min' => reset($arr),
+        'avg' => array_sum($arr) / count($arr),
+    ];
 }
 
-$number = readNumber('Введите число', function ($input) use ($name) { //добавление внешних переменных для функции                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-  echo "$name, введите число\n";
-});
+$wNumArr = [1, 10, 5, 66];
 
-function countdown(int $number = 10): void
-{
-  echo "$number\n";
-
-  $number--;
-  if ($number > 0) {
-     countdown($number); // Вызываем ту же самую функцию. Рекурсия
-  }
-}
-
-require 'functions.php'; // подключение файла
-
-// Выражения импорта:
-// include выполняет нестрогое подключение файла и его выполнение.
-//  «Нестрогое» означает, что если этого файл на будет существовать,
-//   работа программы не прервется, а будет «выброшено» предупреждение.
-// include_once выполнит подключение не более одного раза.
-// require — более строгое выражение подключения. Оно гарантирует импорт файла,
-//  и в случаях, если его нет или его невозможно подключить (ошибка доступа),
-//   будет «выброшена» фатальная ошибка, которая остановит выполнение скрипта.
-// require_once  выполняет строгое подключение файла не более чем один раз.
+print_r(arrFun($wNumArr));
