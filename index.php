@@ -1,36 +1,23 @@
 <?php
 
-// Подготовьте массив целых чисел (4, 5, 1, 4, 7, 8, 15, 6, 71, 45, 2).
-// Разработайте анонимную функцию для применения в качестве аргумента array_map,
-// возвращающую для каждого элемента массива строковое значение: «четное» или «нечетное».
-// Для проверки четности числа используйте деление по модулю (%);
+require_once 'Task.php';
+require_once 'User.php';
 
-$arr = [4, 5, 1, 4, 7, 8, 15, 6, 71, 45, 2];
+// 1. Разработайте класс Task, выполняющий ответственность обычной задачи Todo-списка.
+// Класс должен содержать приватные свойства description, dateCreated, dateUpdated, dateDone,
+// priority (int), isDone (bool) и обязательное user (User).
+// В качества класса пользователя воспользуйтесь разработанным на уроке.
+// Класс Task должен содержать все необходимые для взаимодействия со свойствами методы (getters, setters).
+// При вызове метода setDescription обновляйте значение свойства dateUpdated.
+// Разработайте метод markAsDone, помечающий задачу выполненной,
+// а также обновляющий свойства dateUpdated и dateDone.
 
-$noNameFun = function ($arg) 
-{
-    return (bool)($arg & 1)? "четное" : "нечетное";
-};
+$user1 = new User('Rostislav', 'khmelinin.r@gmail.com');
+$user1->setAge(35);
+$user1->setSex('m');
+// var_dump($user1);
 
-$trueFolsArr = array_map($noNameFun, $arr);
-
-print_r($trueFolsArr);
-
-// Разработайте функцию с объявленными типами аргументов и возвращаемого значения,
-// принимающую в качестве аргумента массив целых чисел. Результатом работы функции должен быть массив,
-// содержащий три элемента: max — наибольшее число, min — наименьшее число,
-// avg — среднее арифметическое всех чисел массива
-
-function arrFun(array $arr) : array
-{
-    sort($arr);
-    return [
-        'max' => end($arr),
-        'min' => reset($arr),
-        'avg' => array_sum($arr) / count($arr),
-    ];
-}
-
-$wNumArr = [1, 10, 5, 66];
-
-print_r(arrFun($wNumArr));
+$task1 = new Task($user1);
+$task1->setDescription('task 1');
+$task1->markAsDone();
+var_dump($task1);
