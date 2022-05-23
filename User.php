@@ -10,20 +10,20 @@ class User {
     private $isActive = true;
     private DateTime $dateCreated;
 
-    function __construct(string $username, string $email) // функция конструктор
+    function __construct(string $username, string $email)
     {
        $this->username = $username;
        $this->email = $email;
 
-       $this->dateCreated = new DateTime(); // Текущие дата и время
+       $this->dateCreated = new DateTime();
     }
 
-    function getUsername(): string // функция для четения имени из обьекта
+    function getUsername(): string
     {
        return $this->username ?? 'unknown';
     }
 
-    function setAge(?int $age): void // функция для записи возраста в обьект
+    function setAge(?int $age): void
     {
        if ($age == null) {
            $this->age = null;
@@ -32,17 +32,17 @@ class User {
        }
     }
 
-    public function getAge(): ?int // функция для четения возраста из обьекта
+    public function getAge(): ?int
     {
         return $this->age;
     }
 
-    public function getSex(): ?string // прочитать пол
+    public function getSex(): ?string
     {
         return $this->sex;
     }
 
-    public function setSex(?string $sex) // записать пол
+    public function setSex(?string $sex)
     {
         $this->sex = $sex;
 

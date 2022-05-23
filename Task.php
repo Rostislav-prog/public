@@ -2,22 +2,15 @@
 
 require_once 'User.php';
 
-// 1. Разработайте класс Task, выполняющий ответственность обычной задачи Todo-списка.
-// Класс должен содержать приватные свойства description, dateCreated, dateUpdated, dateDone,
-// priority (int), isDone (bool) и обязательное user (User).
-// Класс Task должен содержать все необходимые для взаимодействия со свойствами методы (getters, setters).
-// При вызове метода setDescription обновляйте значение свойства dateUpdated.
-// Разработайте метод markAsDone, помечающий задачу выполненной,
-// а также обновляющий свойства dateUpdated и dateDone.
-
 class Task {
-    private User $user; // Исполнитель
-    private ?string $description; // Описание
-    private ?int $priority; // Приоритет
-    private ?DateTime $dateCreated; // Дата создания
-    private ?DateTime $dateUpdated; // Дата обновления
-    private ?DateTime $dateDone; // Дата исполнения
-    private bool $isDone = false; // Исполнена или нет
+    private User $user;
+    private ?string $description;
+    private ?int $priority;
+    private ?DateTime $dateCreated;
+    private ?DateTime $dateUpdated;
+    private ?DateTime $dateDone;
+    private bool $isDone = false;
+    private Comment $comment;
 
     public function __construct(User $user)
     {
@@ -50,11 +43,15 @@ class Task {
         $this->priority = $priority;
     }
 
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
     public function markAsDone() // помечающий задачу выполненной, обновляющий свойства dateUpdated и dateDone
     {
         $this->isDone = true;
         $this->dateUpdated = new DateTime();
-        $this->ddateDone = new DateTime();
+        $this->dateDone = new DateTime();
     }
-
 }
